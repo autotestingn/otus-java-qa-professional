@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 public class UserApi extends PetstoreApi {
     private static final String USER_LIST_RESOURCE = "/user/createWithList";
     private static final String USER_RESOURCE = "/user";
-    private static final String GET_USER_BY_NAME_RESOURCE = "/user/";
+    private static final String GET_USER_BY_NAME_RESOURCE = "/user/{userName}";
 
     public Response createUsersWithList(List<UserRequest> users) {
         return given(requestSpecification)
@@ -33,8 +33,9 @@ public class UserApi extends PetstoreApi {
     public Response getUserByName(String userName) {
         return given(requestSpecification)
                 .with()
+                .pathParam("userName", userName)
                 .log().all()
                 .when()
-                .get(GET_USER_BY_NAME_RESOURCE + userName);
+                .get(GET_USER_BY_NAME_RESOURCE);
     }
 }
