@@ -1,0 +1,26 @@
+CREATE TABLE users
+(
+    id INTEGER  NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128) NOT NULL,
+    email VARCHAR(128) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE courses
+(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128) NOT NULL,
+    price DECIMAL  NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE scores
+(
+    id INTEGER NOT NULL AUTO_INCREMENT,
+    score INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    course_id INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (course_id) REFERENCES courses (id),
+    PRIMARY KEY (id)
+);

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Courses</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<h2>List of courses</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+    </tr>
+    {{#courses}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{price}}</td>
+    </tr>
+    {{/courses}}
+</table>
+</body>
+</html>
