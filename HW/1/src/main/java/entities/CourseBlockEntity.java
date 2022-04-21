@@ -1,19 +1,19 @@
-package pages;
+package entities;
 
 import java.time.LocalDate;
 
-public class CourseBlock {
+public class CourseBlockEntity {
     private String name;
     private LocalDate startDate;
 
-    public CourseBlock(String name, LocalDate startDate) {
+    public CourseBlockEntity(String name, LocalDate startDate) {
         this.name = name;
         this.startDate = startDate;
     }
 
     @Override
     public String toString() {
-        return "CourseBlock{" +
+        return "CourseBlockEntity{" +
                 "name='" + name + '\'' +
                 ", startDate=" + startDate +
                 '}';
@@ -23,12 +23,7 @@ public class CourseBlock {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public LocalDate getStartDate() {
         return startDate;
     }
 }
-

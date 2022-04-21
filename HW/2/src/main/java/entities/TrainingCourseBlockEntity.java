@@ -1,10 +1,12 @@
-package pages;
+package entities;
 
-public class TrainingCourseBlock {
+import java.time.LocalDate;
+
+public class TrainingCourseBlockEntity {
     private String name;
     private Integer price;
 
-    public TrainingCourseBlock(String name, Integer price) {
+    public TrainingCourseBlockEntity(String name, Integer price) {
         this.name = name;
         this.price = price;
     }
@@ -13,23 +15,15 @@ public class TrainingCourseBlock {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
-        return "TrainingCourseBlock{" +
+        return "TrainingCourseBlockEntity{" +
                 "name='" + name + '\'' +
-                ", price=" + price +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

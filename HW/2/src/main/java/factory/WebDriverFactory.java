@@ -1,22 +1,24 @@
 package factory;
 
-import enums.DriverType;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
 public class WebDriverFactory {
-    public WebDriver getWebDriver(DriverType driverType) {
-        switch (driverType) {
-            case CHROME:
-                return new ChromeDriver();
-            case FIREFOX:
+    private WebDriver driver;
+    public WebDriver getWebDriver(String browserName) {
+        switch (browserName) {
+            case "Chrome":
+                WebDriverManager.chromedriver().setup();
+                return driver = new ChromeDriver();
+            case "Firefox":
                 return new FirefoxDriver();
-            case OPERA:
+            case "Opera":
                 return new OperaDriver();
             default:
-                throw new RuntimeException("Incorrect BrowserName");
+                throw new RuntimeException("Incorrect name of browser");
         }
     }
 }
