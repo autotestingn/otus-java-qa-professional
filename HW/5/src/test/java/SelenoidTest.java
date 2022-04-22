@@ -20,14 +20,13 @@ public class SelenoidTest {
         System.out.println("Test fixtures");
         Map<String, Object> selenoidOptions = new HashMap<>();
         selenoidOptions.put("enableVNC", Boolean.parseBoolean(System.getProperty("selenoidEnableVnc")));
-       //selenoidOptions.put("enableVNC", true);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("browserName", System.getProperty("browserName"));
         capabilities.setCapability("browserVersion", System.getProperty("browserVersion"));
         capabilities.setCapability("selenoid:options", selenoidOptions);
         try {
             driver = new RemoteWebDriver(
-                    URI.create("http://127.0.0.1:4445/wd/hub").toURL(),
+                    URI.create(System.getProperty("webdriverUrl")).toURL(),
                     capabilities
             );
         } catch (Exception ignored) {
