@@ -1,13 +1,15 @@
 package services;
 
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 public class UserApi extends BaseApi {
-    private static final String USER_LIST_RESOURCE = "/users/";
-
-    private static final String GET_USER_SCORE_BY_USER_ID_RESOURCE = "/users/{userId}/scores/";
+    public UserApi() {
+        requestSpecification.basePath("/users/");
+    }
 
     public Response getScoresByUserId(String userId) {
         return given(requestSpecification)
@@ -15,7 +17,7 @@ public class UserApi extends BaseApi {
                 .pathParam("userId", userId)
                 .log().all()
                 .when()
-                .get(GET_USER_SCORE_BY_USER_ID_RESOURCE);
+                .get("/{userId}/scores/");
     }
 
     public Response getUsersList() {
@@ -23,6 +25,12 @@ public class UserApi extends BaseApi {
                 .with()
                 .log().all()
                 .when()
-                .get(USER_LIST_RESOURCE);
+                .get("/");
+    }
+
+    public ValidatableResponse validateJsonSchema(Response response, String jsonSchemaPath) {
+        return response
+                .then()
+                .body(matchesJsonSchemaInClasspath(jsonSchemaPath));
     }
 }

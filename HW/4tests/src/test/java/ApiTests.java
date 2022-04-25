@@ -1,4 +1,5 @@
 import dto.UserResponse;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 import services.UserApi;
 
@@ -22,8 +23,9 @@ public class ApiTests {
     @Test
     public void getUserScoresByExistUserId() {
         UserApi userApi = new UserApi();
+        Response response = userApi.getScoresByUserId("1");
 
-        userApi.getScoresByUserId("1")
+        response
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -33,6 +35,8 @@ public class ApiTests {
                 .body("get(1).score", equalTo(78))
                 .body("get(1).userName", equalTo("JohnSmith"))
                 .body("get(1).courseName", equalTo("QA"));
+
+        userApi.validateJsonSchema(response, "schemas/UserScores.json");
     }
 
     /**
@@ -67,8 +71,9 @@ public class ApiTests {
     @Test
     public void getUsersList() {
         UserApi userApi = new UserApi();
+        Response response = userApi.getUsersList();
 
-        List<UserResponse> users = Arrays.asList(userApi.getUsersList()
+        List<UserResponse> users = Arrays.asList(response
                 .then()
                 .log().all()
                 .statusCode(200)
@@ -80,5 +85,7 @@ public class ApiTests {
         assertThat(users.get(0).getId(), equalTo(1L));
         assertThat(users.get(0).getName(), equalTo("JohnSmith"));
         assertThat(users.get(0).getEmail(), equalTo("john.smith@gmail.com"));
+
+        userApi.validateJsonSchema(response, "schemas/Users.json");
     }
 }

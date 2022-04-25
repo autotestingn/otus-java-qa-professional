@@ -20,6 +20,9 @@
         <rest.assured.version>4.4.0</rest.assured.version>
         <json.schema.validator.version>4.3.3</json.schema.validator.version>
 
+        <stubHostname>http://localhost</stubHostname>
+        <stubPort>8080</stubPort>
+
         <surefire.plugin.version>2.22.2</surefire.plugin.version>
         <maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
     </properties>
@@ -60,6 +63,7 @@
             <version>${hamcrest.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -72,8 +76,8 @@
 
                     <systemPropertyVariables>
 
-                        <base.url>http://localhost</base.url>
-                        <server.port>8080</server.port>
+                       <stubHostname>${stubHostname}</stubHostname>
+                        <stubPort>${stubPort}</stubPort>
 
                     </systemPropertyVariables>
                 </configuration>
