@@ -39,6 +39,11 @@ public class CourseBlockComponent extends BaseComponent<CourseBlockComponent>{
         return courseBlock.findElement(By.xpath(xpathForStartDate)).getText().trim();
     }
 
+    private String getCourseBlockLink(WebElement courseBlock) {
+        webElementShouldBeVisible(courseBlock);
+        return courseBlock.getAttribute("href").trim();
+    }
+
     private boolean isDateWithYear(String date) {
         Pattern pattern = Pattern.compile(".*?((\\d{4})(?:\\s*года)).*");
         Matcher matcher = pattern.matcher(date);
@@ -135,7 +140,10 @@ public class CourseBlockComponent extends BaseComponent<CourseBlockComponent>{
     }
 
     public void clickCourseWithMaxStartDate() {
-        customAction.click(driver, searchCourseByMaxDate()).build().perform();
+        WebElement courseWithMaxDate = searchCourseByMaxDate();
+        customAction.setAttributeForOpenLinkInNewTab(driver, getCourseBlockLink(courseWithMaxDate)).click(driver, courseWithMaxDate).build().perform();
+        String oldTab = driver.getWindowHandle();
+        driver.switchTo().window(oldTab);
     }
 
     public void clickCourseWithMinStartDate() {

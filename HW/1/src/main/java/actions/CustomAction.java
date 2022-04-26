@@ -19,8 +19,14 @@ public class CustomAction extends Actions {
             return super.click(target);
         }
         finally {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border = '0px solid red'", target);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].style.border = '3px solid red'", target);
             System.out.println("After click");
         }
+    }
+
+    public CustomAction setAttributeForOpenLinkInNewTab(WebDriver driver, String link) {
+        String resultUrl = link.replaceFirst("^http[s]?:\\/\\/.+?\\/", "");
+        ((JavascriptExecutor) driver).executeScript("document.querySelector(\"[href*='" + resultUrl + "']\").setAttribute('target', '_blank')");
+        return this;
     }
 }
