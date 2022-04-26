@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "score",
+        "userName",
+        "courseName"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "integer"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "courseName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "score",
+        "userName",
+        "courseName"
+      ]
+    }
+  ]
+}
