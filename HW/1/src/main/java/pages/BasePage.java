@@ -11,7 +11,7 @@ public abstract class BasePage<T> {
     protected Actions action;
     protected CustomAction customAction;
     private String pathName;
-    private static final String HOSTNAME = System.getProperty("webdriver.base.url");
+    private static final String HOSTNAME = System.getProperty("base.url");
 
     public BasePage(EventFiringWebDriver driver, String pathName) {
         this.driver = driver;
